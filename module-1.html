@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Module 1 · NotebookLM · Hands-On AI for Research</title>
+<meta name="description" content="NotebookLM for literature grounding and synthesis. What to do before you come, four starter source lists, and the worksheet.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <a class="back" href="index.html">&larr; All modules</a>
+    <p class="mast-rule rise">Module One &nbsp;·&nbsp; 1 and 10 September 2026</p>
+    <h1 class="rise">NotebookLM for <em>grounding</em> and synthesis</h1>
+    <p class="standfirst rise">A notebook that only knows what you gave it, answers with a
+      clickable citation on every claim, and tells you when it does not know.</p>
+    <div class="meta-strip rise">
+      <span><b>Session 1</b> Tue 1 Sep</span>
+      <span><b>Session 2</b> Thu 10 Sep</span>
+      <span>12:00 to 13:00</span>
+      <span>Education 2 North</span>
+    </div>
+  </header>
+
+  <section class="hero-cta rise">
+    <p class="kicker">Before you come · takes five minutes</p>
+    <p><strong>1. Check that you can sign in.</strong> Go to
+      <a href="https://notebooklm.google.com">notebooklm.google.com</a> and sign in with your
+      <strong>CU Anschutz Google account</strong>. You are in when you see a
+      <em>Create new notebook</em> button. If anything goes wrong, say so in the survey and it will
+      be sorted out before the session.</p>
+    <p><strong>2. Bring sources if you have them.</strong> Eight to fifteen PDFs on
+      <em>one specific topic</em>, somewhere you can reach on your laptop. No PDFs? Use one of the
+      four starter lists below, or just turn up and pick one in the room.</p>
+    <p><a class="btn" href="#corpora">Four starter source lists</a>
+       <a class="btn ghost" href="module-1-notebooklm/getting-started.md">Full setup guide</a></p>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">01</span><h2>What you will do</h2></div>
+    <div class="prose wide">
+      <ol class="steps">
+        <li><h3>Build a notebook over sources you chose</h3>
+          <p>Not a search engine, and not connected to PubMed. It knows what you gave it and
+            nothing else. That limitation is the entire reason it is trustworthy.</p></li>
+        <li><h3>Ask a question you already know the answer to</h3>
+          <p>This feels backwards and it is the most useful thing you will do. You cannot calibrate
+            a tool on questions you cannot check.</p></li>
+        <li><h3>Click the citation</h3>
+          <p>The source panel opens on the actual passage. It did not tell you what the source
+            says. It showed you where the source says it, and now you can disagree with it.</p></li>
+        <li><h3>Try to make it fail</h3>
+          <p>Ask something adjacent that your sources do not cover. It should tell you it does not
+            know. An ungrounded chatbot will invent a citation rather than admit that, and you will
+            have watched one do exactly that earlier in the hour.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="corpora">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Four starter source lists</h2></div>
+    <div class="prose wide" style="margin-bottom:1.6rem">
+      <p>Pick one if you do not have your own PDFs, or use one as a model for building your own.
+        Each list ends with <strong>two questions</strong>: one the notebook should answer precisely
+        from a specific clause, and one it should refuse because nothing in the sources covers it.
+        That pair is the exercise.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <span class="c-n">Recommended · everything free</span>
+        <h3>NIH policy and rigor</h3>
+        <p>Data management and sharing, rigor and reproducibility, and the 2024 public access
+          policy. These documents govern your grants whatever your field is, and policy is written
+          in numbered clauses with precise dates, which is exactly what a grounded tool is good at.</p>
+        <p class="cnt">14 sources · all free · all URLs · about 4 minutes to load</p>
+        <p><a href="module-1-notebooklm/starter-corpora/nih-policy-and-rigor/sources.md">The list &rarr;</a></p>
+      </div>
+      <div class="card">
+        <span class="c-n">Used in the demo</span>
+        <h3>HPV and cervical cancer</h3>
+        <p>A complete translational arc: pathogen, causal proof, natural history, screening, vaccine,
+          global policy, and the single-dose schedule. Use this one if you want to follow the
+          demonstration exactly.</p>
+        <p class="cnt">15 sources · verified against PubMed</p>
+        <p><a href="module-1-notebooklm/starter-corpora/hpv-cervical-cancer/sources.md">The list &rarr;</a></p>
+      </div>
+      <div class="card">
+        <span class="c-n">Best for the harder exercise</span>
+        <h3>GLP-1 and cardiometabolic</h3>
+        <p>A fast-moving evidence base where the trials genuinely disagree. Load two that reach
+          different conclusions, ask the question they disagree about, and watch whether it picks a
+          winner or lays out both positions.</p>
+        <p class="cnt">12 trials · verified against PubMed</p>
+        <p><a href="module-1-notebooklm/starter-corpora/glp1-cardiometabolic/sources.md">The list &rarr;</a></p>
+      </div>
+      <div class="card">
+        <span class="c-n">Precise thresholds</span>
+        <h3>Antimicrobial stewardship</h3>
+        <p>Guidelines full of exact durations and numeric cut-points, alongside the trials that
+          overturned them. Good for finding the clause you would otherwise have to go hunting
+          for.</p>
+        <p class="cnt">12 sources · verified against PubMed</p>
+        <p><a href="module-1-notebooklm/starter-corpora/antimicrobial-stewardship/sources.md">The list &rarr;</a></p>
+      </div>
+    </div>
+    <div class="prose wide" style="margin-top:1.6rem">
+      <h3>Why there are no PDFs in the lists</h3>
+      <p>These are lists, not libraries. Most of the papers sit behind publisher paywalls and
+        redistributing them would not be lawful. You already have access through the CU Anschutz
+        library, so a citation with a DOI gets you the same file.</p>
+      <p>It is also the habit the module is about. <strong>A source list with verified identifiers
+        is the durable artifact. The PDFs are just copies.</strong> Every citation was checked
+        against PubMed rather than written from memory, which is precisely the discipline you are
+        learning to apply to what these tools hand you.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Between the two sessions</h2></div>
+    <div class="prose wide">
+      <p class="lead">Build one notebook on <strong>your own</strong> research topic. Eight to
+        fifteen sources, one topic, not your whole field. Find <strong>one question it answers
+        well</strong> and <strong>one question it refuses</strong>. Write both down and bring
+        them.</p>
+      <p>That is about twenty minutes of work, and it is the whole of session two. Session two is
+        people showing what they built, including the parts that went wrong, so it only works if
+        there is something to show.</p>
+      <p>If your notebook got something <em>wrong</em>, that is the most valuable thing you can
+        bring. Those examples teach the room more than the successes do.</p>
+      <p><a class="btn ghost" href="module-1-notebooklm/worksheet.md">The worksheet</a>
+         <a class="btn ghost" href="module-1-notebooklm/troubleshooting.md">Troubleshooting</a></p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">04</span><h2>The one rule</h2></div>
+    <div class="prose wide">
+      <div class="rulebox">
+        <span class="lbl">Data boundary</span>
+        <p><strong>No PHI. Not in a PDF, not pasted, not in a screenshot.</strong></p>
+        <p>NotebookLM is cleared for confidential University material and is <strong>still a No for
+          HIPAA</strong>. Papers, guidelines, protocols, your own drafts: yes. Anything with a
+          patient in it: no. Those are two different columns on the CU page and it is worth knowing
+          which one you are in.</p>
+        <p>We cover the full set of tiers in the first ten minutes. The authority is CU Data
+          Governance, not this page.</p>
+      </div>
+      <p>One more, smaller: <strong>do not use the Discover sources feature</strong> for this
+        exercise. It searches the web and pulls in whatever it finds, which defeats the purpose
+        twice over. The notebook's authority comes from you having chosen every source in it.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p class="fmono">Module 1 · NotebookLM</p>
+    <p>Stuck on anything before Tuesday? Say so in the pre-session survey, or raise a hand in the
+      room. That is what the hour is for.</p>
+    <p style="margin-top:1.6rem">Jayashree Kalpathy-Cramer &nbsp;·&nbsp; CCTSI &nbsp;·&nbsp;
+      CU Anschutz Medical Campus &nbsp;·&nbsp; <a href="index.html">All modules</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
