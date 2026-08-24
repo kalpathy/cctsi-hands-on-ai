@@ -50,6 +50,11 @@ harder and more valuable half of this skill.
 **☐ A. Make it handle disagreement.** Load two sources that reach different conclusions, then ask
 the question they disagree about. Does it pick a winner or lay out both positions?
 
+> Easiest way in: the **fasting vs caloric restriction** starter list. Those trials genuinely
+> contradict each other, so the disagreement is already there waiting for you.
+
+Then ask the follow-up: *"Which of my sources disagree with each other, and on what?"*
+
 What it did: _____________________________________________
 
 **☐ B. Find the edge.** Find a question it refuses. Then decide: was the refusal correct, or did it

@@ -1,14 +1,25 @@
 # Starter corpora
 
-Four ready-made source lists. Pick one if you do not have your own PDFs, or use one as a model
+Five ready-made source lists. Pick one if you do not have your own PDFs, or use one as a model
 for building your own.
 
 | Corpus | Sources | Good for |
 |---|---|---|
-| [NIH policy and rigor](nih-policy-and-rigor/sources.md) | 14 | Everyone. These documents govern your grants regardless of your field, and every one is free. |
-| [HPV and cervical cancer](hpv-cervical-cancer/sources.md) | 15 | A complete translational arc: pathogen, causal proof, screening, vaccine, global policy. |
-| [GLP-1 and cardiometabolic outcomes](glp1-cardiometabolic/sources.md) | 12 | A fast-moving evidence base where trials genuinely disagree. |
-| [Antimicrobial stewardship](antimicrobial-stewardship/sources.md) | 12 | Guidelines with precise numeric thresholds, plus trials that overturned practice. |
+| [NIH policy and rigor](nih-policy-and-rigor/sources.md) | 14 | **Everyone, and the fastest to build.** These documents govern your grants regardless of your field, every one is free, and they are all URLs. |
+| [Fasting vs caloric restriction](fasting-vs-caloric-restriction/sources.md) | 11 | **The best one for learning the skill.** The trials genuinely contradict each other, which is exactly the situation a grounded notebook is for. |
+| [GLP-1 receptor agonists](glp1-cardiometabolic/sources.md) | 19, in three lanes | Outcomes, body composition and lean mass, or oral versus injectable. **Pick one lane, not all three.** |
+| [HPV and cervical cancer](hpv-cervical-cancer/sources.md) | 15 | A complete translational arc: pathogen, causal proof, screening, vaccine, global policy. Used in the demonstration. |
+| [Antimicrobial stewardship](antimicrobial-stewardship/sources.md) | 12 | Guidelines with precise numeric thresholds, plus the trials that overturned practice. |
+
+## One topic, not a whole field
+
+The GLP-1 list is deliberately split into lanes, and the instruction to **pick one** is the most
+important thing on that page.
+
+A notebook holding nineteen sources across three different arguments answers everything vaguely.
+A notebook holding one lane answers precisely. If you want to feel the difference rather than take
+our word for it, build the broad one, ask it something specific, then build the narrow one and ask
+again. That comparison teaches more than any slide.
 
 ## Why there are no PDFs here
 
