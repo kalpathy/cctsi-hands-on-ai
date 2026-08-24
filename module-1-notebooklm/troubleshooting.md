@@ -2,6 +2,10 @@
 
 ## I cannot sign in with my CU account
 
+**NotebookLM is authorised at CU Anschutz and your account should already have it.** So this is
+almost certainly a sign-in problem rather than a permissions one, and the first step below fixes
+the large majority of cases.
+
 Try in this order, and stop as soon as one works.
 
 1. **Sign out of every Google account**, then go to notebooklm.google.com and sign in with
@@ -11,8 +15,10 @@ Try in this order, and stop as soon as one works.
 4. **Use a personal Google account for now.** Every exercise in the session works. Keep it to
    public papers only, since a personal account is not covered by the University agreement.
 
-If none of that works, it may be an account provisioning question for OIT rather than something you
-can fix yourself. Say so in the pre-session survey and it will be sorted out before the session.
+If none of that works, your account may genuinely not have been provisioned, which is an OIT
+question rather than something you can fix yourself. Say so in the pre-session survey and we will
+chase it. You are still covered on the day: a personal Google account does every exercise in the
+session, and if all else fails you will be paired with a neighbour.
 
 ## My PDF will not upload
 
