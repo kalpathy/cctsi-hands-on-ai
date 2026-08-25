@@ -6,9 +6,9 @@ for building your own.
 | Corpus | Sources | Good for |
 |---|---|---|
 | [NIH policy and rigor](nih-policy-and-rigor/sources.md) | 14 | **Everyone, and the fastest to build.** These documents govern your grants regardless of your field, every one is free, and they are all URLs. |
-| [Fasting vs caloric restriction](fasting-vs-caloric-restriction/sources.md) | 11 | **The best one for learning the skill.** The trials genuinely contradict each other, which is exactly the situation a grounded notebook is for. |
+| [Fasting vs caloric restriction](fasting-vs-caloric-restriction/sources.md) | 11 | **Used in the session 1 demonstration**, and the best one for learning the skill. The trials genuinely contradict each other. |
 | [GLP-1 receptor agonists](glp1-cardiometabolic/sources.md) | 19, in three lanes | Outcomes, body composition and lean mass, or oral versus injectable. **Pick one lane, not all three.** |
-| [HPV and cervical cancer](hpv-cervical-cancer/sources.md) | 15 | A complete translational arc: pathogen, causal proof, screening, vaccine, global policy. Used in the demonstration. |
+| [HPV and cervical cancer](hpv-cervical-cancer/sources.md) | 15 | A complete translational arc: pathogen, causal proof, screening, vaccine, global policy. |
 | [Antimicrobial stewardship](antimicrobial-stewardship/sources.md) | 12 | Guidelines with precise numeric thresholds, plus the trials that overturned practice. |
 
 ## One topic, not a whole field
