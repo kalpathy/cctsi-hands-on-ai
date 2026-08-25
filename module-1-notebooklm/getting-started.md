@@ -73,6 +73,12 @@ will invent a citation rather than admit ignorance.
 
 ## The one rule
 
-**No PHI. Not in a PDF, not pasted, not in a screenshot.** NotebookLM is cleared for confidential
-University material and is still a No for HIPAA. Papers, guidelines, protocols, your own drafts:
-yes. Anything with a patient in it: no.
+**No PHI. Not in a PDF, not pasted, not in a screenshot.**
+
+NotebookLM is approved for University data up to **Highly Confidential**, and it is **a No for
+HIPAA**. Papers, guidelines, protocols, your own drafts: yes. Anything with a patient in it: no.
+
+Worth knowing, because people get it backwards: **Microsoft Copilot and CU ChatGPT Edu can take
+PHI, with approval from the data owner.** NotebookLM cannot. So the rule is not "AI tools are not
+for patient data", it is "this tool is not". Current table:
+https://www.cuanschutz.edu/offices/iss/artificial-intelligence/ai-tool-overview-and-comparison

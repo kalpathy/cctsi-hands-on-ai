@@ -49,10 +49,16 @@ discipline the modules are about: **verify the source, do not trust the summary.
 
 ## Two rules that apply to every module
 
-1. **No PHI, ever, in any of these tools.** NotebookLM and Microsoft Copilot are cleared for
-   confidential University material and are still a No for HIPAA. Guidelines and papers yes,
-   patient charts no. The current tiers are covered in session 1 of module 1, and the authority is
-   CU Data Governance, not this repository.
+1. **Know which tool you are in.** CU classifies data as Public, Confidential and Highly
+   Confidential, and HIPAA sits as a separate question on top of that.
+
+   **NotebookLM is approved up to Highly Confidential, and is a No for HIPAA.** Guidelines, papers,
+   protocols and your own drafts yes; anything with a patient in it, no.
+
+   The part people get backwards: **Microsoft Copilot and CU ChatGPT Edu can take PHI, with
+   approval from the data owner.** NotebookLM cannot. The authority is CU's AI tool comparison,
+   not this repository:
+   https://www.cuanschutz.edu/offices/iss/artificial-intelligence/ai-tool-overview-and-comparison
 2. **Click the citation.** If a tool tells you something and you cannot get to the source, you do
    not have an answer yet.
 

@@ -72,8 +72,9 @@ Claims checked: ______   Claims fully supported: ______
 ## The rule, once
 
 **No PHI. Not in a PDF, not pasted, not in a screenshot.**
-NotebookLM is cleared for confidential University material and is still a **No for HIPAA**.
+NotebookLM is approved up to **Highly Confidential** and is a **No for HIPAA**.
 Papers, guidelines, protocols, your own drafts: yes. Anything with a patient in it: no.
+(Copilot and CU ChatGPT Edu *can* take PHI with data owner approval. This one cannot.)
 
 ## Before September 10
 
