@@ -191,3 +191,35 @@ footer .fmono{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-
   body::before{display:none} body{background:#fff;color:#000;font-size:11pt}
   .btn,.back{display:none} .index a{padding:.5rem 0}
 }
+
+/* ── record builder ───────────────────────────────── */
+.fld{font-family:var(--mono);font-size:.85rem;background:var(--paper-2);color:var(--ink);
+  border:1px solid var(--rule);padding:.5rem .6rem;border-radius:2px;max-width:100%}
+textarea.fld{width:100%;line-height:1.5}
+.cv-status{font-family:var(--mono);font-size:.78rem;color:var(--ink-3);min-height:1.4em}
+.cv-ok{color:var(--moss)} .cv-bad{color:var(--oxblood)}
+.cv-find{border-left:3px solid var(--rule);padding:.5rem .8rem;margin:.6rem 0;background:var(--paper-2)}
+.cv-find.cv-blocker{border-left-color:var(--oxblood)}
+.cv-find.cv-warn{border-left-color:var(--gold)}
+.cv-find.cv-info{border-left-color:var(--rule)}
+.cv-find strong{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--ink-3)}
+.cv-drop{border:1px dashed var(--rule);padding:1.4rem;text-align:center;cursor:pointer;
+  font-family:var(--mono);font-size:.8rem;color:var(--ink-3);border-radius:2px}
+.cv-drop.over{border-color:var(--gold);color:var(--ink)}
+.cv-rank{display:flex;gap:.7rem;align-items:baseline;padding:.35rem 0;border-bottom:1px solid var(--rule-soft)}
+.cv-score{font-family:var(--mono);font-size:.8rem;color:var(--gold);min-width:1.6em}
+.cv-matched{font-family:var(--mono);font-size:.7rem;color:var(--ink-3)}
+.cv-cut{border:0;border-top:2px solid var(--oxblood);margin:.4rem 0}
+.cv-render{background:var(--paper-2);border:1px solid var(--rule);padding:1.4rem;margin-top:1rem}
+.cv-render h1{font-family:var(--display);font-size:1.6rem;margin:0 0 .2rem}
+.cv-render h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--ink-3);
+  border-bottom:1px solid var(--rule);padding-bottom:.3rem;margin:1.4rem 0 .5rem}
+.cv-render ul{list-style:none;padding:0;margin:0}
+.cv-render li{padding:.22rem 0;font-size:.92rem}
+.cv-y,.cv-id{font-family:var(--mono);font-size:.74rem;color:var(--ink-3)}
+.cv-j{font-style:italic;color:var(--ink-2)}
+.cv-empty{color:var(--ink-3);font-style:italic}
+.cv-prompt{margin-top:1rem}
+.cv-note-inline{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);display:block;margin-top:.4rem}
+.cv-note{font-size:.9rem;color:var(--ink-2);border-left:3px solid var(--gold);padding-left:.8rem}
+@media(max-width:34rem){.cv-rank{flex-wrap:wrap}}
