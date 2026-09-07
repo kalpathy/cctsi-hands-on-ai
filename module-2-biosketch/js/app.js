@@ -1,5 +1,5 @@
 // participant-site/module-2-biosketch/js/app.js
-import { emptyRecord, SECTIONS } from './schema.js';
+import { emptyRecord } from './schema.js';
 import { fetchOrcid } from './orcid.js';
 import { enrichPublications } from './enrich.js';
 import { parseReporterExport } from './reporter.js';

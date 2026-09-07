@@ -208,6 +208,7 @@ textarea.fld{width:100%;line-height:1.5}
 .cv-drop.over{border-color:var(--gold);color:var(--ink)}
 .cv-rank{display:flex;gap:.7rem;align-items:baseline;padding:.35rem 0;border-bottom:1px solid var(--rule-soft)}
 .cv-score{font-family:var(--mono);font-size:.8rem;color:var(--gold);min-width:1.6em}
+.cv-rank .cv-t{flex:1}
 .cv-matched{font-family:var(--mono);font-size:.7rem;color:var(--ink-3)}
 .cv-cut{border:0;border-top:2px solid var(--oxblood);margin:.4rem 0}
 .cv-render{background:var(--paper-2);border:1px solid var(--rule);padding:1.4rem;margin-top:1rem}
