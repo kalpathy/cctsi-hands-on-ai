@@ -1,4 +1,6 @@
-// Deliberately simple and deliberately visible. This is the transparent baseline that
+// Deliberately simple and deliberately visible.
+// Domain nouns stay OUT of STOP even when they look generic: 'screening' appears in 20 of the
+// 339 works on the ORCID record this is demoed with, so stopwording it would hide real matches. This is the transparent baseline that
 // Tier 1's model output gets compared against, so it must never be a black box.
 
 const STOP = new Set([
@@ -6,7 +8,7 @@ const STOP = new Set([
   'had','not','but','its','their','our','your','which','who','whom','into','onto','over','under',
   'between','among','during','after','before','than','then','also','such','can','may','will',
   'study','studies','research','aim','aims','specific','using','use','used','based','approach',
-  'novel','new','role','effect','effects','analysis','results','data','patients','clinical','screening',
+  'novel','new','role','effect','effects','analysis','results','data','patients','clinical',
 ]);
 
 export function tokenize(text) {
