@@ -10,7 +10,8 @@ import { buildPrompt } from './prompt.js';
 import { saveRecord, loadRecord } from './store.js';
 
 const $ = id => document.getElementById(id);
-let record = loadRecord() ?? emptyRecord();
+// Merge onto a fresh record: a stored value from an older version may be missing section keys.
+let record = { ...emptyRecord(), ...(loadRecord() ?? {}) };
 let selected = [];
 
 function say(msg, kind = '') {
@@ -19,6 +20,12 @@ function say(msg, kind = '') {
 }
 
 function persist() { saveRecord(record); }
+
+// Tag each publication with its position so enrichment can write back precisely.
+function indexed() { return record.publications.map((p, idx) => ({ ...p, idx })); }
+
+// Strip the transient ranking and indexing fields before anything is stored or exported.
+function bare({ idx, score, matched, ...rest }) { return rest; }
 
 // A record can have dozens of publications missing identifiers. Printing them all inline
 // pushes the grants, ranking and output sections off the screen, so long lists collapse.
@@ -42,6 +49,7 @@ function showDiagnosis() {
 }
 
 $('fetch').addEventListener('click', async () => {
+  const btn = $('fetch'); btn.disabled = true;
   say('Asking ORCID…');
   try {
     const { publications, identity } = await fetchOrcid($('orcid').value);
@@ -52,6 +60,8 @@ $('fetch').addEventListener('click', async () => {
     showDiagnosis();
   } catch (e) {
     say(e.message, 'cv-bad');
+  } finally {
+    btn.disabled = false;
   }
 });
 
@@ -59,16 +69,24 @@ $('fetch').addEventListener('click', async () => {
 // hundreds of works and enriching all of them would eat the hands-on block.
 $('enrich').addEventListener('click', async () => {
   if (record.publications.length === 0) return say('Fetch your ORCID record first.', 'cv-bad');
-  const targets = selected.length ? selected : record.publications.slice(0, 10);
-  say(`Looking up missing identifiers for ${targets.length} publication(s)…`);
-  const filled = await enrichPublications(targets, { limit: 10, delayMs: 350 });
-  const byTitle = new Map(filled.map(p => [p.title, p]));
-  record.publications = record.publications.map(p => byTitle.get(p.title) ?? p);
-  selected = selected.map(p => byTitle.get(p.title) ?? p);
-  persist();
-  const failed = filled.filter(p => p.enrichFailed).length;
-  say(failed ? `Done. ${failed} lookup(s) failed and were left blank.` : 'Done.', failed ? 'cv-bad' : 'cv-ok');
-  showDiagnosis();
+  const targets = selected.length ? selected : indexed().slice(0, 10);
+  const btn = $('enrich'); btn.disabled = true;
+  try {
+    say(`Looking up missing identifiers for ${targets.length} publication(s)…`);
+    const filled = await enrichPublications(targets, { limit: 10, delayMs: 350 });
+    // Write back by index. Titles repeat on a real record, so keying this on the title stamped
+    // one paper's identifiers onto every entry that happened to share its title.
+    for (const p of filled) {
+      if (Number.isInteger(p.idx)) record.publications[p.idx] = bare(p);
+    }
+    selected = filled;
+    persist();
+    const failed = filled.filter(p => p.enrichFailed).length;
+    say(failed ? `Done. ${failed} lookup(s) failed and were left blank.` : 'Done.', failed ? 'cv-bad' : 'cv-ok');
+    showDiagnosis();
+  } finally {
+    btn.disabled = false;
+  }
 });
 
 $('drop').addEventListener('click', () => $('file').click());
@@ -92,15 +110,14 @@ async function readGrants(file) {
 }
 
 $('rank').addEventListener('click', () => {
-  const ranked = rankPublications(record.publications, $('aims').value);
+  const ranked = rankPublications(indexed(), $('aims').value);
   selected = ranked.slice(0, 10);
   $('ranked').innerHTML = ranked.map((p, i) => `
     <div class="cv-rank">
       <span class="cv-score">${p.score}</span>
       <span class="cv-t">${escapeHtml(p.title)}</span>
       ${p.matched.length ? `<span class="cv-matched">${p.matched.map(escapeHtml).join(', ')}</span>` : '<span class="cv-matched">no shared terms</span>'}
-      ${i === 9 ? '<hr class="cv-cut">' : ''}
-    </div>`).join('');
+    </div>${i === 9 ? '<hr class="cv-cut">' : ''}`).join('');
 });
 
 $('mkcv').addEventListener('click', () => {
@@ -119,7 +136,8 @@ $('mkprompt').addEventListener('click', () => {
 });
 
 $('save').addEventListener('click', () => {
-  const blob = new Blob([JSON.stringify(record, null, 2)], { type: 'application/json' });
+  const clean = { ...record, publications: record.publications.map(bare) };
+  const blob = new Blob([JSON.stringify(clean, null, 2)], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'career-record.json';

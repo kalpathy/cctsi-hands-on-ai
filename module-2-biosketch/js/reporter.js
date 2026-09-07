@@ -1,19 +1,27 @@
 // api.reporter.nih.gov sends NO access-control-allow-origin header (verified 2026-09-04),
 // so the browser cannot call it. Participants export from the RePORTER web UI and drop it here.
 
-function splitCsvLine(line) {
-  const out = [];
-  let cur = '', inQuotes = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
+// Tokenize the whole export in one pass, tracking quotes ACROSS newlines. Splitting on newlines
+// first shredded any row with a multi-line quoted field into a phantom grant with a garbage
+// project number, which then landed in the CV with no error at all.
+function splitCsvRows(text) {
+  const rows = [];
+  let row = [], cur = '', inQuotes = false;
+  const endField = () => { row.push(cur); cur = ''; };
+  const endRow = () => { endField(); if (row.some(c => c.trim())) rows.push(row); row = []; };
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
     if (c === '"') {
-      if (inQuotes && line[i + 1] === '"') { cur += '"'; i++; }
+      if (inQuotes && text[i + 1] === '"') { cur += '"'; i++; }
       else inQuotes = !inQuotes;
-    } else if (c === ',' && !inQuotes) { out.push(cur); cur = ''; }
-    else cur += c;
+    } else if (c === ',' && !inQuotes) endField();
+    else if ((c === '\n' || c === '\r') && !inQuotes) {
+      if (c === '\r' && text[i + 1] === '\n') i++;
+      endRow();
+    } else cur += c;
   }
-  out.push(cur);
-  return out.map(s => s.trim());
+  endRow();
+  return rows.map(r => r.map(cell => cell.trim()));
 }
 
 const COLUMNS = {
@@ -25,11 +33,10 @@ const COLUMNS = {
 };
 
 export function parseReporterCsv(text) {
-  const lines = String(text).split(/\r?\n/).filter(l => l.trim());
-  if (lines.length === 0) return [];
-  const header = splitCsvLine(lines[0]).map(h => COLUMNS[h.toLowerCase()] ?? null);
-  return lines.slice(1).map(line => {
-    const cells = splitCsvLine(line);
+  const rows = splitCsvRows(String(text));
+  if (rows.length === 0) return [];
+  const header = rows[0].map(h => COLUMNS[h.toLowerCase()] ?? null);
+  return rows.slice(1).map(cells => {
     const g = { projectNum: '', title: '', year: null, amount: 0, agency: '', source: 'reporter' };
     header.forEach((key, i) => {
       if (!key) return;
