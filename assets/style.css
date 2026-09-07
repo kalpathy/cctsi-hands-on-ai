@@ -224,3 +224,9 @@ textarea.fld{width:100%;line-height:1.5}
 .cv-note-inline{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);display:block;margin-top:.4rem}
 .cv-note{font-size:.9rem;color:var(--ink-2);border-left:3px solid var(--gold);padding-left:.8rem}
 @media(max-width:34rem){.cv-rank{flex-wrap:wrap}}
+.cv-find details{margin-top:.3rem}
+.cv-find summary{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--gold);
+  cursor:pointer;padding:.2rem 0}
+.cv-find summary:hover{color:var(--gold-bright)}
+.cv-find ul{margin:.4rem 0 0;padding-left:1.1rem}
+.cv-find li{font-size:.88rem;padding:.1rem 0}

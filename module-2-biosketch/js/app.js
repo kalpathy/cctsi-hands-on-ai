@@ -20,6 +20,15 @@ function say(msg, kind = '') {
 
 function persist() { saveRecord(record); }
 
+// A record can have dozens of publications missing identifiers. Printing them all inline
+// pushes the grants, ranking and output sections off the screen, so long lists collapse.
+function list(items) {
+  if (!items || items.length === 0) return '';
+  const ul = `<ul>${items.map(t => `<li>${escapeHtml(t)}</li>`).join('')}</ul>`;
+  if (items.length <= 5) return ul;
+  return `<details><summary>Show all ${items.length}</summary>${ul}</details>`;
+}
+
 function showDiagnosis() {
   const findings = diagnose(record);
   if (findings.length === 0) {
@@ -27,8 +36,7 @@ function showDiagnosis() {
     return;
   }
   $('diagnosis').innerHTML = findings.map(f => {
-    const extra = f.titles ? `<ul>${f.titles.map(t => `<li>${escapeHtml(t)}</li>`).join('')}</ul>`
-      : f.sections ? `<ul>${f.sections.map(t => `<li>${escapeHtml(t)}</li>`).join('')}</ul>` : '';
+    const extra = list(f.titles ?? f.sections);
     return `<div class="cv-find cv-${f.level}"><strong>${f.level.toUpperCase()}</strong> ${escapeHtml(f.message)}${extra}</div>`;
   }).join('');
 }
