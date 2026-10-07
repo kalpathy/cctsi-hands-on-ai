@@ -23,7 +23,7 @@ does the same thing and will pick up updates with `git pull`.
 | # | Module | Session 1 | Session 2 | Materials |
 |---|---|---|---|---|
 | 1 | NotebookLM for Literature Grounding and Synthesis | 2026-09-01 | 2026-09-10 | [here](module-1-notebooklm/) |
-| 2 | Lightweight Automation: NIH Biosketches and CVs | 2026-10-09 | 2026-10-15 | posted in October |
+| 2 | Lightweight Automation: NIH Biosketches and CVs | 2026-10-09 | 2026-10-15 | [here](module-2-biosketch/) |
 | 3 | Practical Copilot Use Cases for Research and Administration | 2026-11-09 | 2026-11-20 | posted in November |
 | 4 | Parsing and Structuring Informatics from PDFs | 2026-12-07 | 2026-12-14 | posted in December |
 | 5 | Automatically Generating Presentations, Including Voice Narration | 2027-01-07 | 2027-01-14 | posted in January |
@@ -36,6 +36,11 @@ module-1-notebooklm/
   worksheet.md              the one-pager from session 1
   starter-corpora/          four ready-made source lists
   troubleshooting.md        what breaks, and what to do
+module-2-biosketch/
+  record.html               the record builder: runs in your browser, nothing to install
+  getting-started.md        your ORCID iD, the RePORTER export, troubleshooting
+  worksheet.md              the one-pager from session 1
+  js/                       the code behind the page, readable if you are curious
 ```
 
 ## A note on the source lists
