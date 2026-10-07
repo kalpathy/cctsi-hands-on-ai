@@ -1,5 +1,6 @@
 // participant-site/module-2-biosketch/js/app.js
-import { emptyRecord } from './schema.js';
+import { SECTIONS, emptyRecord } from './schema.js';
+import { parseEntries, formatEntries } from './entries.js';
 import { fetchOrcid } from './orcid.js';
 import { enrichPublications } from './enrich.js';
 import { parseReporterExport } from './reporter.js';
@@ -7,7 +8,7 @@ import { diagnose } from './diagnose.js';
 import { rankPublications } from './rank.js';
 import { renderCV, escapeHtml } from './render-cv.js';
 import { buildPrompt } from './prompt.js';
-import { saveRecord, loadRecord } from './store.js';
+import { saveRecord, loadRecord, clearRecord, parseRecordFile } from './store.js';
 
 const $ = id => document.getElementById(id);
 // Merge onto a fresh record: a stored value from an older version may be missing section keys.
@@ -55,7 +56,11 @@ $('fetch').addEventListener('click', async () => {
     const { publications, identity, employments } = await fetchOrcid($('orcid').value);
     record.publications = publications;
     record.orcidEmployments = employments;
-    record.identity = { ...record.identity, ...identity, orcid: $('orcid').value.trim() };
+    // Keep a typed name when ORCID hides it; otherwise ORCID's wins, so a coordinator who
+    // switches to another PI's iD does not carry the previous name across.
+    record.identity = { ...record.identity, name: identity.name || record.identity.name,
+      orcid: $('orcid').value.trim() };
+    drawAbout();
     persist();
     say(`ORCID returned ${publications.length} work(s).`, 'cv-ok');
     showDiagnosis();
@@ -146,5 +151,70 @@ $('save').addEventListener('click', () => {
   URL.revokeObjectURL(a.href);
 });
 
+// Grants arrive as a dropped export and publications come from ORCID. Everything else is typed.
+const TYPED = SECTIONS.filter(s => s.key !== 'grants' && s.key !== 'publications');
+const ABOUT = ['name', 'title', 'org', 'email'];
+
+function drawAbout() {
+  for (const f of ABOUT) $(`id-${f}`).value = record.identity[f] ?? '';
+}
+
+for (const f of ABOUT) {
+  $(`id-${f}`).addEventListener('input', e => { record.identity[f] = e.target.value.trim(); persist(); });
+}
+
+function drawSections() {
+  $('sections').innerHTML = TYPED.map(s => `
+    <details class="cv-sec" data-key="${s.key}">
+      <summary>${escapeHtml(s.title)}<span class="cv-count"></span></summary>
+      <textarea class="fld" rows="5" aria-label="${escapeHtml(s.title)}"></textarea>
+    </details>`).join('');
+  for (const d of $('sections').querySelectorAll('details')) {
+    const key = d.dataset.key;
+    const ta = d.querySelector('textarea');
+    const count = () => {
+      const n = record[key].length;
+      d.querySelector('.cv-count').textContent = n ? ` \u00b7 ${n}` : '';
+    };
+    ta.value = formatEntries(record[key]);
+    count();
+    ta.addEventListener('input', () => { record[key] = parseEntries(ta.value); count(); persist(); });
+    ta.addEventListener('change', () => { if (record.publications.length) showDiagnosis(); });
+  }
+}
+
+function redraw() {
+  $('orcid').value = record.identity.orcid ?? '';
+  drawAbout();
+  drawSections();
+  $('ranked').innerHTML = ''; $('out').innerHTML = '';
+  selected = [];
+  if (record.publications.length) showDiagnosis(); else $('diagnosis').innerHTML = '';
+}
+
+$('open').addEventListener('click', () => $('recfile').click());
+$('recfile').addEventListener('change', async e => {
+  const file = e.target.files[0];
+  e.target.value = '';
+  if (!file) return;
+  try {
+    record = parseRecordFile(await file.text());
+    persist(); redraw();
+    say(`Opened ${file.name}.`, 'cv-ok');
+  } catch (err) {
+    say(err.message, 'cv-bad');
+  }
+});
+
+$('reset').addEventListener('click', () => {
+  if (!confirm('Clear this record from this browser? Download it first if you want to keep it.')) return;
+  clearRecord();
+  record = emptyRecord();
+  redraw();
+  say('Started a new record.', 'cv-ok');
+});
+
 if (record.identity.orcid) $('orcid').value = record.identity.orcid;
+drawAbout();
+drawSections();
 if (record.publications.length) showDiagnosis();

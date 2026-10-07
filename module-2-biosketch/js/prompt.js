@@ -51,15 +51,19 @@ ${selected.map(pubLine).join('\n')}`);
   parts.push(
 `WHAT TO WRITE
 1. A Personal Statement of at most ${LIMITS.personalStatement.toLocaleString('en-US')} characters,
-   saying why I am suited to my role on this project. Cite works using the bracketed numbers above.
+   saying why I am suited to my role on this project.
 2. Up to ${LIMITS.contributionCount} Contributions to Science, each at most
    ${LIMITS.contribution.toLocaleString('en-US')} characters. Each one states the problem, what I
-   did, and why it mattered, then cites the relevant works by bracketed number.`);
+   did, and why it mattered, with the relevant works referenced in the text.`);
 
   parts.push(
 `RULES
 - Cite only the works in the list above. Do not add any other paper, and do not invent a DOI, a
   PMID, a journal or a year. If you think something is missing, say so instead of supplying it.
+- Refer to a work in the text in parentheses by its PMID, for example (PMID: 12345678). If it
+  has no PMID, use its number from the list, for example (ref 3), and I will replace it.
+- No full citations, no reference list, and no hyperlinks. NIH allows only short in-text
+  references, and only to the works listed above.
 - Do not describe work that is not evidenced by the list above.
 - Do not exceed the character limits. Report the character count after each section.
 - Where you are unsure of a fact about me, leave a clearly marked [GAP] rather than guessing.`);
