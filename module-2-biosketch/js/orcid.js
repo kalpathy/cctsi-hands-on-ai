@@ -36,6 +36,22 @@ export function normalizePerson(payload) {
   return { name: [given, family].filter(Boolean).join(' ').trim() };
 }
 
+// SciENcv can pull positions from ORCID, so stale employment here becomes a stale form.
+export function normalizeEmployments(payload) {
+  const year = d => d?.year?.value ?? '';
+  return (payload?.['affiliation-group'] ?? [])
+    .flatMap(g => g.summaries ?? [])
+    .map(s => s['employment-summary'] ?? {})
+    .map(e => ({
+      org: e.organization?.name ?? '',
+      role: e['role-title'] ?? '',
+      department: e['department-name'] ?? '',
+      start: year(e['start-date']),
+      end: year(e['end-date']),
+    }))
+    .filter(e => e.org);
+}
+
 export async function fetchOrcid(id, fetchFn = globalThis.fetch) {
   const clean = String(id ?? '').trim();
   if (!isValidOrcid(clean)) {
@@ -46,6 +62,14 @@ export async function fetchOrcid(id, fetchFn = globalThis.fetch) {
     if (!res.ok) throw new Error(`ORCID returned ${res.status} for ${path}. Try again in a moment.`);
     return res.json();
   };
-  const [works, person] = await Promise.all([get('/works'), get('/person')]);
-  return { publications: normalizeWorks(works), identity: normalizePerson(person) };
+  // null means "could not check", which the diagnostic skips. An empty list would read as
+  // "no employment listed" and tell someone their ORCID is wrong when it is not.
+  const [works, person, jobs] = await Promise.all([
+    get('/works'), get('/person'), get('/employments').catch(() => null),
+  ]);
+  return {
+    publications: normalizeWorks(works),
+    identity: normalizePerson(person),
+    employments: jobs ? normalizeEmployments(jobs) : null,
+  };
 }

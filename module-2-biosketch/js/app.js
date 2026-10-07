@@ -43,7 +43,7 @@ function showDiagnosis() {
     return;
   }
   $('diagnosis').innerHTML = findings.map(f => {
-    const extra = list(f.titles ?? f.sections);
+    const extra = list(f.titles ?? f.sections ?? f.positions);
     return `<div class="cv-find cv-${f.level}"><strong>${f.level.toUpperCase()}</strong> ${escapeHtml(f.message)}${extra}</div>`;
   }).join('');
 }
@@ -52,8 +52,9 @@ $('fetch').addEventListener('click', async () => {
   const btn = $('fetch'); btn.disabled = true;
   say('Asking ORCID…');
   try {
-    const { publications, identity } = await fetchOrcid($('orcid').value);
+    const { publications, identity, employments } = await fetchOrcid($('orcid').value);
     record.publications = publications;
+    record.orcidEmployments = employments;
     record.identity = { ...record.identity, ...identity, orcid: $('orcid').value.trim() };
     persist();
     say(`ORCID returned ${publications.length} work(s).`, 'cv-ok');

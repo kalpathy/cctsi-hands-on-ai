@@ -35,6 +35,38 @@ export function diagnose(record) {
     });
   }
 
+  // Undefined or null means employment was never fetched, so there is nothing to judge.
+  const jobs = record.orcidEmployments;
+  if (Array.isArray(jobs)) {
+    const label = j => (j.role ? `${j.org} (${j.role})` : j.org);
+    const open = jobs.filter(j => !j.end);
+    const undated = jobs.filter(j => !j.start);
+    if (jobs.length === 0) {
+      findings.push({
+        code: 'no-employment', level: 'warn', section: 'appointments',
+        message: 'ORCID lists no employment. SciENcv can pull your positions from ORCID, so that section will start empty. Add your current position in ORCID.',
+      });
+    } else if (open.length === 0) {
+      findings.push({
+        code: 'no-current-employment', level: 'warn', section: 'appointments',
+        message: 'Every position in your ORCID has an end date, so it shows no current employer. Add your current position in ORCID.',
+      });
+    } else if (open.length > 1) {
+      findings.push({
+        code: 'open-ended-employment', level: 'warn', section: 'appointments',
+        count: open.length, positions: open.map(label),
+        message: `ORCID shows ${open.length} positions with no end date, so all of them read as current. If one has ended, add its end date in ORCID before SciENcv copies it.`,
+      });
+    }
+    if (undated.length > 0) {
+      findings.push({
+        code: 'undated-employment', level: 'warn', section: 'appointments',
+        count: undated.length, positions: undated.map(label),
+        message: `${undated.length} position(s) in ORCID have no start date. The biosketch lists appointments with dates, so add them in ORCID.`,
+      });
+    }
+  }
+
   const emptyManual = SECTIONS
     .filter(s => s.auto === 'none' && (record[s.key] ?? []).length === 0)
     .map(s => s.title);
