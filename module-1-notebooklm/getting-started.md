@@ -74,7 +74,5 @@ will hallucinate a citation rather than admit it does not have an answer.
 NotebookLM is approved for University data up to **Highly Confidential**, and it is **a No for
 HIPAA**. Papers, guidelines, protocols, your own drafts: yes. Anything with a patient in it: no.
 
-Worth knowing, because people get it backwards: **Microsoft Copilot and CU ChatGPT Edu can take
-PHI, with approval from the data owner.** NotebookLM cannot. So the rule is not "AI tools are not
-for patient data", it is "this tool is not". Current table:
+Current table:
 https://www.cuanschutz.edu/offices/iss/artificial-intelligence/ai-tool-overview-and-comparison
