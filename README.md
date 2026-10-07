@@ -36,6 +36,7 @@ module-1-notebooklm/
   worksheet.md              the one-pager from session 1
   starter-corpora/          four ready-made source lists
   troubleshooting.md        what breaks, and what to do
+module-2-automations.html   the cookbook: 23 small automations, most in Microsoft Copilot
 module-2-biosketch/
   record.html               the record builder: runs in your browser, nothing to install
   getting-started.md        your ORCID iD, the RePORTER export, troubleshooting

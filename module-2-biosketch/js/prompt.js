@@ -1,4 +1,4 @@
-// Builds the text a participant pastes into CU ChatGPT Edu or Google Workspace Gemini.
+// Builds the text a participant pastes into Microsoft Copilot Chat or CU ChatGPT Edu.
 // Everything the model is allowed to cite is in the prompt, so any other citation is
 // a fabrication the participant can catch by eye. That check is the point of the module.
 

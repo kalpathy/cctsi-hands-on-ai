@@ -45,7 +45,8 @@ Read the matched words. Would you have picked the same top ten?
 ☐ Yes    ☐ Mostly    ☐ No, and the reason is: ____________________________
 
 **☐ B. Draft one Contribution to Science.** Press **Build the grounded prompt**, paste it into
-**CU ChatGPT Edu** or **Google Workspace Gemini**, and ask for one Contribution to Science.
+**Microsoft Copilot** (copilot.cloud.microsoft, CU sign-in, everyone has it) or **CU ChatGPT Edu**,
+and ask for one Contribution to Science.
 
 **☐ C. Check every PMID in the draft against your list.** This is the exercise.
 
@@ -69,7 +70,7 @@ person, not a delegate.
 
 **You sign it.** A draft from a chat tool is a draft. Check every citation, date and claim before
 it goes anywhere near SciENcv.
-A biosketch holds no patient data. CU ChatGPT Edu and Google Workspace Gemini are approved up to
+A biosketch holds no patient data. Copilot Chat and CU ChatGPT Edu, on your CU sign-in, are approved up to
 **Highly Confidential**. Still no PHI, anywhere.
 
 ## Before October 15
