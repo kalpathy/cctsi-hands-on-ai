@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Career record &middot; Module 2 &middot; Hands-On AI for Research</title>
+<meta name="description" content="Build your career record from ORCID, see what SciENcv is missing, and get a grounded prompt for the NIH Biosketch Supplement.">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <a class="back" href="../index.html">&larr; All modules</a>
+    <p class="mast-rule">Module Two &nbsp;·&nbsp; The record</p>
+    <h1>Your career <em>record</em></h1>
+    <p class="standfirst">Everything here stays in your browser. No account, no upload, no key.
+      The only things that leave this tab are your ORCID iD and publication titles, sent to
+      ORCID, Crossref and PubMed.</p>
+  </header>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Start with ORCID</h2></div>
+    <div class="prose wide">
+      <p>NIH requires an ORCID iD linked to your eRA Commons account, and SciENcv builds your
+        Products list from it. What comes back is your real compliance status.</p>
+      <p>
+        <input id="orcid" class="fld" type="text" inputmode="text" placeholder="0000-0001-2345-6789" size="22" aria-label="ORCID iD">
+        <button id="fetch" class="btn" type="button">Fetch my record</button>
+        <button id="enrich" class="btn" type="button">Fill missing DOIs and PMIDs</button>
+        <span class="cv-note-inline">Rank first, then fill: only the ten that go on the form need identifiers.</span>
+      </p>
+      <p id="status" class="cv-status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">02</span><h2>What is missing</h2></div>
+    <div class="prose wide"><div id="diagnosis"></div></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Fill in what nothing can fetch</h2></div>
+    <div class="prose wide">
+      <p>Most of a CV is written down nowhere a computer can reach, which is why it goes stale.
+        Start with three sections. One entry per line, year first:</p>
+      <pre class="cv-example">2019-2023 Associate Professor, Department of Radiology
+2021 Best Paper Award, Journal of Clinical Investigation
+2022-present Member, Data Safety Monitoring Board</pre>
+      <p class="cv-note-inline">Saved in this browser as you type. Download your record at the end to keep it.</p>
+      <div class="cv-about">
+        <label>Name <input id="id-name" class="fld" type="text" autocomplete="name"></label>
+        <label>Title <input id="id-title" class="fld" type="text" placeholder="Associate Professor of Medicine"></label>
+        <label>Organization <input id="id-org" class="fld" type="text" placeholder="University of Colorado Anschutz Medical Campus"></label>
+        <label>Email <input id="id-email" class="fld" type="email" autocomplete="email"></label>
+      </div>
+      <div id="sections"></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Add your grants</h2></div>
+    <div class="prose wide">
+      <p>RePORTER does not allow this page to call it, so export your results from RePORTER as
+        CSV or JSON and drop the file here.</p>
+      <div id="drop" class="cv-drop" tabindex="0" role="button" aria-label="Drop a RePORTER export">
+        Drop a RePORTER export here, or click to choose a file
+      </div>
+      <input id="file" type="file" accept=".csv,.json,text/csv,application/json" hidden>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Rank against a project</h2></div>
+    <div class="prose wide">
+      <p>Paste your specific aims. Publications are scored by shared terms, and the matched terms
+        are shown so you can see exactly why each one ranked where it did. No model is involved.</p>
+      <textarea id="aims" class="fld" rows="6" placeholder="Paste your specific aims here" aria-label="Specific aims"></textarea>
+      <p><button id="rank" class="btn" type="button">Rank my publications</button></p>
+      <div id="ranked"></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Take it away</h2></div>
+    <div class="prose wide">
+      <p>
+        <button id="mkcv" class="btn" type="button">Render my CU-format CV</button>
+        <button id="mkprompt" class="btn" type="button">Build the grounded prompt</button>
+        <button id="save" class="btn" type="button">Download my record</button>
+        <button id="open" class="btn ghost" type="button">Open a saved record</button>
+        <button id="reset" class="btn ghost" type="button">Start a new record</button>
+        <input id="recfile" type="file" accept=".json,application/json" hidden>
+      </p>
+      <p class="cv-note">Paste the prompt into Microsoft Copilot (copilot.cloud.microsoft, signed in
+        with your CU account) or CU ChatGPT Edu. Then
+        check every citation it gives you against the list you handed it. Anything else is a
+        fabrication you were about to certify.</p>
+      <div id="out"></div>
+    </div>
+  </section>
+
+</div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Automation cookbook · Module 2 · Hands-On AI for Research</title>
+<meta name="description" content="Twenty-three small, safe automations for research and research administration, in Microsoft Copilot, Power Automate, CU ChatGPT Edu and the record builder. Each one says what goes in, what comes out, and what you check.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <a class="back" href="module-2.html">&larr; Module 2</a>
+    <p class="mast-rule rise">Module Two &nbsp;·&nbsp; The cookbook</p>
+    <h1 class="rise">Small, safe <em>automations</em></h1>
+    <p class="standfirst rise">Twenty-three chores that come round again and again, each turned into a
+      fixed input, fixed steps, and an output you check. No programming. Most of them run in
+      Microsoft Copilot, which everyone at CU already has.</p>
+  </header>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">01</span><h2>How to read a recipe</h2></div>
+    <div class="prose wide">
+      <p>Every recipe has the same shape as the biosketch work in this module:
+        <strong>what goes in</strong>, <strong>the fixed steps</strong>, <strong>what comes
+        out</strong>, and <strong>what you check</strong>. The last part is not optional. A recipe
+        saves you the typing, not the reading.</p>
+      <p><strong>Small</strong> means one job, done the same way every time. <strong>Safe</strong>
+        means the inputs are yours to share, nothing leaves CU's approved tools, and a person reads
+        the output before it goes anywhere.</p>
+      <p>Each recipe is tagged with the tool it needs, and who has that tool:</p>
+    </div>
+    <div class="prose wide" style="overflow-x:auto">
+      <table class="who">
+        <thead><tr><th>Tool</th><th>Who has it at CU</th><th>Good for</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tool t-free">Copilot Chat</span></td>
+            <td><strong>Everyone</strong>, free. Sign in with your CU account at
+              <a href="https://copilot.cloud.microsoft">copilot.cloud.microsoft</a>, or use it in
+              Outlook and Teams. Web search is off under CU policy, but it can read your own
+              Microsoft 365 content.</td>
+            <td>Drafting, summarizing, reworking files you upload</td></tr>
+          <tr><td><span class="tool t-paid">Copilot, paid</span></td>
+            <td>A paid Microsoft 365 Copilot license, requested through OIT</td>
+            <td>Copilot inside Word, Excel and PowerPoint; prompts that run on a schedule</td></tr>
+          <tr><td><span class="tool t-flow">Power Automate</span></td>
+            <td><strong>Everyone</strong>, free for your own flows with the standard connectors</td>
+            <td>Things that should happen without you: saving, logging, reminding</td></tr>
+          <tr><td><span class="tool t-edu">ChatGPT Edu</span></td>
+            <td>Eligible faculty and staff, after CU's required training. Staff paid from external
+              grants may need to request an exception.</td>
+            <td>Projects that hold your files and your rules for reuse</td></tr>
+          <tr><td><span class="tool t-google">Google license</span></td>
+            <td>A paid CU Google Workspace license, which includes Gemini and NotebookLM (now called
+              Gemini Notebook)</td>
+            <td>Notebooks over sources you chose, as in Module 1</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.85rem;color:var(--ink-3)">Checked against CU's pages on 7 October 2026.
+        These change. The authority is
+        <a href="https://www.cuanschutz.edu/offices/iss/artificial-intelligence/ai-tool-overview-and-comparison">CU's AI tool overview and comparison</a>.</p>
+      <div class="rulebox">
+        <span class="lbl">The rules for every recipe</span>
+        <p><strong>No PHI in any of these.</strong> If a chore involves patient data, ask the data
+          owner and ISS before automating it.</p>
+        <p><strong>Sign in with your CU account</strong>, never a personal one, for anything that is
+          not already public.</p>
+        <p><strong>Read before it leaves your hands.</strong> Anything you send, submit or sign is
+          yours, whoever drafted it.</p>
+      </div>
+      <h3>The recipes</h3>
+      <ol class="toc">
+        <li><a href="#r1">A 150-word bio</a></li>
+        <li><a href="#r2">Personal Statement for a new project</a></li>
+        <li><a href="#r3">Trim to the limit</a></li>
+        <li><a href="#r4">Honors, newest first</a></li>
+        <li><a href="#r5">Publications since a date</a></li>
+        <li><a href="#r6">The PI pre-flight check</a></li>
+        <li><a href="#r7">A long thread, in five lines</a></li>
+        <li><a href="#r8">The biosketch chase email</a></li>
+        <li><a href="#r9">Notes from a meeting transcript</a></li>
+        <li><a href="#r10">A Monday digest</a></li>
+        <li><a href="#r11">What changed between two versions</a></li>
+        <li><a href="#r12">A lay summary</a></li>
+        <li><a href="#r13">Your record as a Word CV</a></li>
+        <li><a href="#r14">Grants ending this year</a></li>
+        <li><a href="#r15">A funding deadline tracker</a></li>
+        <li><a href="#r16">Clean a messy list</a></li>
+        <li><a href="#r17">Save attachments automatically</a></li>
+        <li><a href="#r18">A form that logs itself</a></li>
+        <li><a href="#r19">The biosketch collection box</a></li>
+        <li><a href="#r20">A reminder that sends itself</a></li>
+        <li><a href="#r21">A ChatGPT Edu Project for your biosketch</a></li>
+        <li><a href="#r22">A Copilot agent that checks drafts</a></li>
+        <li><a href="#r23">A policy desk notebook</a></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Your record, reused</h2></div>
+    <div class="prose wide" style="margin-bottom:1.2rem">
+      <p>Start from the <a href="module-2-biosketch/record.html">record builder</a>. Once your
+        record is true, every one of these is a view of it.</p>
+    </div>
+    <div class="recipes">
+
+      <article class="recipe" id="r1">
+        <header><span class="r-n">01</span><h3>A 150-word bio</h3><span class="tool t-free">Copilot Chat</span></header>
+        <p class="r-chore">For a seminar announcement, an award nomination, a program book.</p>
+        <dl class="r-flow"><dt>In</dt><dd>Your CU-format CV from the record builder, copied from the page</dd>
+          <dt>Out</dt><dd>A third-person bio of about 150 words</dd></dl>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt</span><button class="copy" type="button">Copy</button></div>
+<pre>Using only the CV below, write a third-person bio of about 150 words for [the event or award].
+Include my current title and organization, two research themes, and up to three honors.
+Use only facts that appear in the CV. Do not add degrees, titles, numbers or honors that are not there.
+
+CV:
+[paste your CV]</pre></div>
+        <p class="r-check"><b>You check</b> every title, date and honor appears in your CV, and nothing was upgraded.</p>
+      </article>
+
+      <article class="recipe" id="r2">
+        <header><span class="r-n">02</span><h3>A Personal Statement for a new project</h3><span class="tool t-free">Copilot Chat</span><span class="tool t-edu">or ChatGPT Edu</span></header>
+        <p class="r-chore">Every new application needs one, and each one is about a different project.</p>
+        <ol class="r-steps">
+          <li>In the record builder, paste the <strong>new</strong> aims and press Rank my publications.</li>
+          <li>Press Fill missing DOIs and PMIDs, then Build the grounded prompt.</li>
+          <li>Paste the prompt into Copilot and add the line below.</li>
+        </ol>
+        <div class="r-prompt"><div class="r-bar"><span>Add to the end of the grounded prompt</span><button class="copy" type="button">Copy</button></div>
+<pre>Write only the Personal Statement for now, at most 3,500 characters including spaces.
+Explain why I am suited to my role on THIS project, using the aims above.
+After the text, list every PMID you referred to.</pre></div>
+        <p class="r-check"><b>You check</b> every PMID is one of your ten, and count the characters yourself in Word (Review, Word Count, characters with spaces).</p>
+      </article>
+
+      <article class="recipe" id="r3">
+        <header><span class="r-n">03</span><h3>Trim to the limit</h3><span class="tool t-free">Copilot Chat</span></header>
+        <p class="r-chore">The draft is good and 400 characters too long.</p>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt</span><button class="copy" type="button">Copy</button></div>
+<pre>Shorten this Contribution to Science to under 2,000 characters including spaces.
+Keep every (PMID: n) reference exactly as it is. Do not add any claim, paper or number.
+If something must go, cut description before you cut a result.
+Then list what you removed.
+
+[paste the Contribution]</pre></div>
+        <p class="r-check"><b>You check</b> the count yourself, and that every PMID survived unchanged. Models are poor at counting characters.</p>
+      </article>
+
+      <article class="recipe" id="r4">
+        <header><span class="r-n">04</span><h3>Honors, newest first</h3><span class="tool t-free">Copilot Chat</span></header>
+        <p class="r-chore">The Supplement allows up to 15. Your CV has more, in no particular order.</p>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt</span><button class="copy" type="button">Copy</button></div>
+<pre>From the CV below, list my honors and awards, newest first, one per line, as:
+YEAR  Award, awarding body
+Use only items in the CV. If there are more than 15, list the 15 most recent and then name the rest separately.
+
+CV:
+[paste your CV]</pre></div>
+        <p class="r-check"><b>You check</b> each line against the CV, and choose the 15 yourself. Most recent is a default, not a judgment.</p>
+      </article>
+
+      <article class="recipe" id="r5">
+        <header><span class="r-n">05</span><h3>Publications since a date</h3><span class="tool t-free">Copilot Chat</span><span class="tool t-paid">or Copilot in Excel</span></header>
+        <p class="r-chore">For a progress report, an annual review, a department newsletter.</p>
+        <dl class="r-flow"><dt>In</dt><dd><code>career-record.json</code>, downloaded from the record builder</dd>
+          <dt>Out</dt><dd>A table of publications from a given year onward</dd></dl>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt, with the file attached</span><button class="copy" type="button">Copy</button></div>
+<pre>The attached file is my career record. From its "publications" list, make a table of every
+publication with year [2024] or later: title, journal, year, PMID, DOI. Newest first.
+Use only entries in the file. Then tell me how many rows the table has.</pre></div>
+        <p class="r-check"><b>You check</b> the count against ORCID for the same years. If they differ, find the missing row before you use the table.</p>
+      </article>
+
+      <article class="recipe" id="r6">
+        <header><span class="r-n">06</span><h3>The PI pre-flight check</h3><span class="tool t-free">Record builder + Copilot in Outlook</span></header>
+        <p class="r-chore">For coordinators: find what a PI's record is missing weeks before the deadline, not the day of it.</p>
+        <ol class="r-steps">
+          <li>Run the PI's ORCID iD in the record builder. Copy the findings under What is missing.</li>
+          <li>In Outlook, open a new email to the PI and ask Copilot to draft it from the prompt below.</li>
+          <li>Press Start a new record before the next PI.</li>
+        </ol>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt</span><button class="copy" type="button">Copy</button></div>
+<pre>Draft a short, friendly email to [PI name] before their [grant] submission due [date].
+Explain that NIH builds part of the biosketch from their ORCID record, and list these
+items for them to fix in ORCID, most important first. Offer to help. Do not add any item.
+
+Items:
+[paste the findings]</pre></div>
+        <p class="r-check"><b>You check</b> the list matches the findings exactly. You can find the problems; only the PI can certify the biosketch.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Email and meetings</h2></div>
+    <div class="recipes">
+
+      <article class="recipe" id="r7">
+        <header><span class="r-n">07</span><h3>A long thread, in five lines</h3><span class="tool t-free">Copilot in Outlook</span></header>
+        <p class="r-chore">Forty replies, three decisions, and one thing someone is waiting on you for.</p>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt, with the thread open</span><button class="copy" type="button">Copy</button></div>
+<pre>Summarize this thread as three lists: decisions made; open questions; and who owes what, by when.
+For each item, say which email it comes from (sender and date).
+If something is unclear in the thread, say so rather than resolving it.</pre></div>
+        <p class="r-check"><b>You check</b> any item you will act on by opening the email it names.</p>
+      </article>
+
+      <article class="recipe" id="r8">
+        <header><span class="r-n">08</span><h3>The biosketch chase email</h3><span class="tool t-free">Copilot in Outlook</span></header>
+        <p class="r-chore">For coordinators: the email to every key person on an application, sent once and sent early.</p>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt</span><button class="copy" type="button">Copy</button></div>
+<pre>Draft an email to the key personnel on [grant, sponsor, due date]. Ask each person to send
+me a certified NIH biosketch from SciENcv by [your internal date]. Include this checklist:
+- made in SciENcv, not a Word template, and not re-saved or flattened afterwards
+- ORCID iD linked to their eRA Commons account
+- research security training completed in the last 12 months
+- Personal Statement written for THIS project
+Keep it under 150 words. Friendly, clear, no exclamation marks.</pre></div>
+        <p class="r-check"><b>You check</b> the dates, the grant, and that the checklist matches the current NIH instructions for this application.</p>
+      </article>
+
+      <article class="recipe" id="r9">
+        <header><span class="r-n">09</span><h3>Notes from a meeting transcript</h3><span class="tool t-free">Copilot Chat</span></header>
+        <p class="r-chore">The lab meeting was recorded and transcribed. Nobody took notes.</p>
+        <dl class="r-flow"><dt>In</dt><dd>The transcript file, downloaded from the Teams meeting</dd>
+          <dt>Out</dt><dd>Decisions, action items with owners, and what was left open</dd></dl>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt, with the transcript attached</span><button class="copy" type="button">Copy</button></div>
+<pre>From the attached transcript, list: decisions made; action items with the owner and any date
+mentioned; and questions left unresolved. Use only the transcript. Where the transcript is
+ambiguous about who agreed to what, write [UNCLEAR] instead of guessing.</pre></div>
+        <p class="r-check"><b>You check</b> each action item against the transcript, and send owners their items to confirm. Only for meetings where everyone knew it was recorded, and never for meetings that discuss patients.</p>
+      </article>
+
+      <article class="recipe" id="r10">
+        <header><span class="r-n">10</span><h3>A Monday digest</h3><span class="tool t-paid">Copilot, paid</span></header>
+        <p class="r-chore">One prompt, scheduled to run every Monday morning, so the week starts with a list.</p>
+        <ol class="r-steps">
+          <li>Run the prompt once in Copilot and adjust it until the answer is useful.</li>
+          <li>Use the option to schedule the prompt (paid license, up to 10 schedules).</li>
+        </ol>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt</span><button class="copy" type="button">Copy</button></div>
+<pre>From my email in the last 7 days, list messages about [study name], [IRB], or [grant number]
+that still need a reply or an action from me. One line each: sender, date, what they need.
+Oldest first.</pre></div>
+        <p class="r-check"><b>You check</b> the messages themselves before acting. A digest can miss an email; it is a reminder, not a record.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Documents</h2></div>
+    <div class="recipes">
+
+      <article class="recipe" id="r11">
+        <header><span class="r-n">11</span><h3>What changed between two versions</h3><span class="tool t-flow">Word Compare</span><span class="tool t-free">+ Copilot Chat</span></header>
+        <p class="r-chore">A protocol, aims page or manuscript came back edited, without track changes.</p>
+        <ol class="r-steps">
+          <li>In Word: Review, Compare, Compare two versions. This step is not AI, and it is exact.</li>
+          <li>Save the compared document, attach it in Copilot, and use the prompt.</li>
+        </ol>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt, with the compared file attached</span><button class="copy" type="button">Copy</button></div>
+<pre>The attached document shows tracked changes between two versions. List the changes of
+substance (meaning, numbers, dates, eligibility, procedures) in the order they appear,
+quoting the changed text. Ignore formatting and punctuation. Do not judge whether they are good.</pre></div>
+        <p class="r-check"><b>You check</b> the summary against the tracked changes, which are the ground truth. Use the exact tool for the part that has to be exact.</p>
+      </article>
+
+      <article class="recipe" id="r12">
+        <header><span class="r-n">12</span><h3>A lay summary</h3><span class="tool t-free">Copilot Chat</span></header>
+        <p class="r-chore">For a community advisory board, a newsletter, a recruitment flyer draft.</p>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt</span><button class="copy" type="button">Copy</button></div>
+<pre>Rewrite this abstract for a general audience, about 120 words, at roughly an 8th-grade reading
+level. Do not add any finding, number or claim that is not in the abstract, and do not make
+the results sound more certain than the abstract does.
+
+[paste the abstract]</pre></div>
+        <p class="r-check"><b>You check</b> every number and claim maps back to the abstract. Anything for participants also goes through the IRB.</p>
+      </article>
+
+      <article class="recipe" id="r13">
+        <header><span class="r-n">13</span><h3>Your record as a Word CV</h3><span class="tool t-free">Copilot Chat</span><span class="tool t-paid">or Copilot in Word</span></header>
+        <p class="r-chore">The record builder renders your CV on the page. Promotion committees want a Word file.</p>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt</span><button class="copy" type="button">Copy</button></div>
+<pre>Turn the CV below into a Word document. Keep every section heading and every entry, in the
+same order, with years on the left. Do not rewrite, merge or drop any entry.
+Then tell me how many entries each section has.
+
+[paste the CV from the record builder]</pre></div>
+        <p class="r-check"><b>You check</b> the per-section counts against the page. A dropped line is the failure you will not notice by reading.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Spreadsheets and trackers</h2></div>
+    <div class="recipes">
+
+      <article class="recipe" id="r14">
+        <header><span class="r-n">14</span><h3>Grants ending this year</h3><span class="tool t-free">Copilot Chat</span><span class="tool t-paid">or Copilot in Excel</span></header>
+        <p class="r-chore">Which awards need a renewal, a no-cost extension, or a final report soon.</p>
+        <dl class="r-flow"><dt>In</dt><dd>Your RePORTER export (the same CSV the record builder takes)</dd>
+          <dt>Out</dt><dd>A short table of projects ending in the next 12 months</dd></dl>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt, with the CSV attached</span><button class="copy" type="button">Copy</button></div>
+<pre>From the attached RePORTER export, list projects whose project end date falls within 12 months
+of [today's date]: project number, title, end date. Sort by end date.
+Tell me which column you used for the end date and how many projects matched.</pre></div>
+        <p class="r-check"><b>You check</b> by sorting the end-date column yourself. The count must match.</p>
+      </article>
+
+      <article class="recipe" id="r15">
+        <header><span class="r-n">15</span><h3>A funding deadline tracker</h3><span class="tool t-free">Copilot Chat</span></header>
+        <p class="r-chore">Five funding notices, five sets of dates and limits, one table.</p>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt, with the notices attached or pasted</span><button class="copy" type="button">Copy</button></div>
+<pre>From the funding notices below, make a table: notice number, title, application due date(s),
+eligibility in one line, page limits, budget limit. For every date and limit, quote the
+sentence it comes from. If a field is not stated, write NOT STATED.
+
+[paste or attach the notices]</pre></div>
+        <p class="r-check"><b>You check</b> every date against the notice itself. Dates are where models slip, and a wrong due date costs a cycle.</p>
+      </article>
+
+      <article class="recipe" id="r16">
+        <header><span class="r-n">16</span><h3>Clean a messy list</h3><span class="tool t-paid">Copilot in Excel</span><span class="tool t-free">or Copilot Chat</span></header>
+        <p class="r-chore">A roster, a sign-up export, a list of collaborators: names in three formats and duplicates.</p>
+        <div class="r-prompt"><div class="r-bar"><span>Prompt</span><button class="copy" type="button">Copy</button></div>
+<pre>Clean this table: put names as Last, First; split any combined name-and-email column;
+standardize dates as YYYY-MM-DD. Do not delete any row. Add a column called CHANGED that
+says what you changed in each row, and a column called POSSIBLE_DUPLICATE.</pre></div>
+        <p class="r-check"><b>You check</b> the row count before and after is the same, and review every POSSIBLE_DUPLICATE yourself.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Automations that run themselves</h2></div>
+    <div class="prose wide" style="margin-bottom:1.2rem">
+      <p><strong>Power Automate</strong> (make.powerautomate.com, CU sign-in) runs small flows of the
+        form <em>when this happens, do that</em>. No AI is involved once a flow is built, which is
+        exactly why it is reliable. Start from a template, or, if your account offers it, describe the
+        flow in a sentence and let Copilot build the first draft.</p>
+      <p>Use flows for your own, non-sensitive files and messages. Ask ISS before automating
+        anything that touches patient or restricted data.</p>
+    </div>
+    <div class="recipes">
+
+      <article class="recipe" id="r17">
+        <header><span class="r-n">17</span><h3>Save attachments automatically</h3><span class="tool t-flow">Power Automate</span></header>
+        <p class="r-chore">Reports from a core facility or a sponsor arrive by email and get lost there.</p>
+        <div class="r-prompt"><div class="r-bar"><span>Describe the flow</span><button class="copy" type="button">Copy</button></div>
+<pre>When a new email arrives in my Outlook inbox from [sender address] with an attachment,
+save each attachment to the OneDrive folder [Reports/Core facility], with the date in the file name.</pre></div>
+        <p class="r-check"><b>You check</b> by sending one test email, then looking in the folder after the first week.</p>
+      </article>
+
+      <article class="recipe" id="r18">
+        <header><span class="r-n">18</span><h3>A form that logs itself</h3><span class="tool t-flow">Power Automate</span><span class="tool t-flow">Microsoft Forms</span></header>
+        <p class="r-chore">Seminar sign-ups, data requests, equipment bookings: responses straight into a spreadsheet, with a heads-up.</p>
+        <div class="r-prompt"><div class="r-bar"><span>Describe the flow</span><button class="copy" type="button">Copy</button></div>
+<pre>When a new response is submitted to my Microsoft Form [form name], add a row to the table
+[Requests] in the Excel file [file] on OneDrive with every answer and the time, then send me
+an email with the requester's name and their first answer.</pre></div>
+        <p class="r-check"><b>You check</b> by submitting a test response. Do not collect anything in the form you would not want in an email.</p>
+      </article>
+
+      <article class="recipe" id="r19">
+        <header><span class="r-n">19</span><h3>The biosketch collection box</h3><span class="tool t-flow">Power Automate</span></header>
+        <p class="r-chore">For coordinators: one folder where key personnel drop their biosketches, and you hear about each one.</p>
+        <div class="r-prompt"><div class="r-bar"><span>Describe the flow</span><button class="copy" type="button">Copy</button></div>
+<pre>When a file is added to the SharePoint or OneDrive folder [Biosketches - grant name],
+post a message to the Teams channel [channel] saying the file name and who added it,
+and add a row to the Excel table [Received] with the file name, person and date.</pre></div>
+        <p class="r-check"><b>You check</b> folder permissions first (only the people who should add files can), then add a test file.</p>
+      </article>
+
+      <article class="recipe" id="r20">
+        <header><span class="r-n">20</span><h3>A reminder that sends itself</h3><span class="tool t-flow">Power Automate</span></header>
+        <p class="r-chore">The weekly lab checklist, the monthly effort reminder, the quarterly report nudge.</p>
+        <div class="r-prompt"><div class="r-bar"><span>Describe the flow</span><button class="copy" type="button">Copy</button></div>
+<pre>Every Monday at 8:00 am Mountain time, post this message in the Teams channel [lab channel]:
+[your checklist]</pre></div>
+        <p class="r-check"><b>You check</b> the first run, and put an end date in your calendar to review whether it is still needed.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Set it up once, reuse it</h2></div>
+    <div class="recipes">
+
+      <article class="recipe" id="r21">
+        <header><span class="r-n">21</span><h3>A ChatGPT Edu Project for your biosketch</h3><span class="tool t-edu">ChatGPT Edu</span></header>
+        <p class="r-chore">The same files and the same rules, every application, without pasting them again.</p>
+        <ol class="r-steps">
+          <li>Create a Project. Add <code>career-record.json</code>, your CV, and current aims as files.</li>
+          <li>Paste the RULES section of the grounded prompt into the Project's instructions.</li>
+          <li>For each new application, start a chat in the Project and add the new aims.</li>
+        </ol>
+        <p class="r-chore" style="font-size:.88rem">Use Projects, not custom GPTs: OpenAI has announced it is retiring custom GPTs for Edu workspaces, planned for December 2026.</p>
+        <p class="r-check"><b>You check</b> every draft the same way as today. Keep the files current: a Project holding last year's CV drafts last year's biosketch.</p>
+      </article>
+
+      <article class="recipe" id="r22">
+        <header><span class="r-n">22</span><h3>A Copilot agent that checks drafts</h3><span class="tool t-free">Copilot Chat</span></header>
+        <p class="r-chore">A second pair of eyes with the rules built in, for you or for the PIs you support.</p>
+        <ol class="r-steps">
+          <li>In Copilot Chat, create an agent and paste these instructions.</li>
+          <li>To use it, paste your ten Products and the draft.</li>
+        </ol>
+        <div class="r-prompt"><div class="r-bar"><span>Agent instructions</span><button class="copy" type="button">Copy</button></div>
+<pre>You check NIH Biosketch Supplement drafts. The user gives you a list of up to ten Products and
+a draft. Do not rewrite anything. Report:
+1. Every reference in the draft, in order, and whether it matches an item in the list.
+2. Anything that looks like a full citation, a reference list, or a link (NIH allows none).
+3. The character count of each section against its limit: Personal Statement 3,500;
+   each Contribution to Science 2,000.
+4. Every claim about the author's role (led, designed, first) so the author can confirm it.</pre></div>
+        <p class="r-check"><b>You check</b> anyway. A model checking a model's work is a filter, not the check.</p>
+      </article>
+
+      <article class="recipe" id="r23">
+        <header><span class="r-n">23</span><h3>A policy desk notebook</h3><span class="tool t-google">Google license</span></header>
+        <p class="r-chore">Module 1's notebook, pointed at the NIH rules you keep looking up.</p>
+        <ol class="r-steps">
+          <li>Create a notebook in NotebookLM (Gemini Notebook).</li>
+          <li>Add as sources: NOT-OD-26-018, NOT-OD-26-079, the Biographical Sketch Common Form page,
+            and the NIH Common Forms FAQ, as URLs.</li>
+          <li>Ask your question the way you would ask a grants administrator.</li>
+        </ol>
+        <p class="r-check"><b>You check</b> by clicking the citation, as in Module 1. When NIH issues a new notice, add it, or the notebook answers from old rules.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><span class="sec-num">08</span><h2>Make your own</h2></div>
+    <div class="prose wide">
+      <p class="lead">Pick a chore you did three times last month. Write down what goes in, what comes
+        out, and how you would know it was wrong. If you cannot answer the last one, it is not ready
+        to automate.</p>
+      <p>Bring it to session 2 on 15 October. Module 3, on 9 and 20 November, goes much further into
+        Copilot in Word, Excel, PowerPoint and Outlook.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p class="fmono">Module 2 · The cookbook</p>
+    <p>Found a recipe that works, or one that went wrong? Bring it on 15 October.</p>
+    <p style="margin-top:1.6rem">Jayashree Kalpathy-Cramer &nbsp;·&nbsp; CCTSI &nbsp;·&nbsp;
+      CU Anschutz Medical Campus &nbsp;·&nbsp; <a href="module-2.html">Module 2</a> &nbsp;·&nbsp;
+      <a href="index.html">All modules</a></p>
+  </footer>
+
+</div>
+<script>
+for (const b of document.querySelectorAll('.r-bar .copy')) {
+  b.addEventListener('click', async () => {
+    const pre = b.closest('.r-prompt').querySelector('pre');
+    try {
+      await navigator.clipboard.writeText(pre.innerText);
+      b.textContent = 'Copied';
+    } catch {
+      const r = document.createRange(); r.selectNodeContents(pre);
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      b.textContent = 'Selected, press Ctrl+C';
+    }
+    setTimeout(() => { b.textContent = 'Copy'; }, 1800);
+  });
+}
+</script>
+</body>
+</html>
